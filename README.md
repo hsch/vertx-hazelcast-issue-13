@@ -1,9 +1,15 @@
 # vertx-hazelcast-issue-13
-Demonstrates how vert.x fails to deliver messages over its event bus when hazelcast nodes leave the cluster
+Demonstrates how vert.x fails to deliver messages over its event bus when hazelcast nodes leave the cluster.
+
+## Environment
+
+- Windows 7
+- Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
+- Vert.x 3.2.1
 
 ## Setup
 
-The application can be run in 4 different modes, publisher, consumer-1, consumer-2, and consumer-3. The consumers essentially all behave the same
+The application can be run in 4 different modes, publisher, consumer-1, consumer-2, and consumer-3. The consumers essentially all behave the same, please excuse the redundant code. :)
 
 First start the publisher:
 
@@ -19,13 +25,13 @@ Now, in a separate shell, start the first consumer:
 
     gradle run -Pconsumer-1
     
-You will see that the publisher starts receiving PONGs from that consumer. *Note that from now on the publisher will no longer accept if nobody should respond anymore. It would log errors then.*Anyway, everything is fine for now:
+You will see that the publisher starts receiving PONGs from that consumer. **Note that from now on the publisher will no longer accept it to receive no responses to its messages. It will log errors then.** Anyway, everything is fine for now:
 
     Sending ping...
     Received response; consumerName='consumer-1'
     ...
 
-Now start the next consumers, number 2 and 3. Just to make things as reproducible as possible start them sequentially, i.e. wait for number 2 to successfully connect to the cluster and send replies before you start number 3.
+Now start the next consumers, number 2 and 3. Just to make things as reproducible as possible, please start them sequentially, i.e. wait for number 2 to successfully connect to the cluster and send replies before you start number 3.
 
     gradle run -Pconsumer-2
     gradle run -Pconsumer-3
@@ -51,13 +57,13 @@ So far, so good.
 Now kill consumer numbers 2 and 3. Really kill the processes and try to make it as simultaneous as possible. From now on, no matter how long you give the cluster to recover (I've waited up to 15 minutes), it will fail to deliver the publisher's messages:
 
     Sending ping...
-    Received response; consumrName='consumer-1'
+    Received response; consumerName='consumer-1'
     Sending ping...
     This should not have happened!
     Sending ping...
     This should not have happened!
     Sending ping...
-    Received response; consumrName='consumer-1'
+    Received response; consumerName='consumer-1'
     Sending ping...
     This should not have happened!
     
