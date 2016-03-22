@@ -1,0 +1,34 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+mainClassName = 'fail.Demo'
+
+repositories {
+  mavenCentral()
+}
+run {
+  if (project.hasProperty('publisher') ) {
+    args 'publisher'
+  }
+  if (project.hasProperty('consumer-1') ) {
+    args 'consumer-1'
+  }
+  if (project.hasProperty('consumer-2') ) {
+    args 'consumer-2'
+  }
+  if (project.hasProperty('consumer-3') ) {
+    args 'consumer-3'
+  }
+}
+
+dependencies {  
+  compile 'log4j:log4j:1.2.17'
+  compile 'org.slf4j:slf4j-api:1.7.19'
+  compile 'org.slf4j:slf4j-log4j12:1.7.19'
+  compile 'io.vertx:vertx-core:3.2.1'
+  compile 'io.vertx:vertx-hazelcast:3.2.1'
+}
