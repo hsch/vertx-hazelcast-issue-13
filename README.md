@@ -6,7 +6,7 @@ Demonstrates how vert.x fails to deliver messages over its event bus when hazelc
 - CentOS 7, Windows 7
 - Java 1.8.0_45-b14, 1.8.0_60-b27
 - Vert.x 3.2.1
-- Hazelcast 3.5.2
+- Hazelcast 3.5.2, 3.6.1
 - ```<backup-count>2</backup-count>```
 
 ## Setup
