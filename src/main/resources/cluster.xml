@@ -2,7 +2,7 @@
 <hazelcast
 	xsi:schemaLocation="http://www.hazelcast.com/schema/config hazelcast-config-3.5.xsd"
 	xmlns="http://www.hazelcast.com/schema/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	
+
 	<properties>
 		<property name="hazelcast.logging.type">slf4j</property>
 	</properties>
@@ -16,10 +16,10 @@
 		</join>
 	</network>
 
-  <multimap name="default">
-    <backup-count>2</backup-count>
-  </multimap>
-  
+	<multimap name="default">
+		<backup-count>2</backup-count>
+	</multimap>
+
 	<map name="__vertx.subs">
 		<backup-count>2</backup-count>
 		<time-to-live-seconds>0</time-to-live-seconds>
@@ -28,14 +28,14 @@
 		<merge-policy>com.hazelcast.map.merge.LatestUpdateMapMergePolicy</merge-policy>
 	</map>
 
-  <map name="__vertx.haInfo">
-    <backup-count>2</backup-count>
-    <time-to-live-seconds>0</time-to-live-seconds>
-    <max-idle-seconds>0</max-idle-seconds>
-    <eviction-policy>NONE</eviction-policy>
-    <merge-policy>com.hazelcast.map.merge.LatestUpdateMapMergePolicy</merge-policy>
-  </map>
-	
+	<map name="__vertx.haInfo">
+		<backup-count>2</backup-count>
+		<time-to-live-seconds>0</time-to-live-seconds>
+		<max-idle-seconds>0</max-idle-seconds>
+		<eviction-policy>NONE</eviction-policy>
+		<merge-policy>com.hazelcast.map.merge.LatestUpdateMapMergePolicy</merge-policy>
+	</map>
+
 	<semaphore name="__vertx.*">
 		<initial-permits>1</initial-permits>
 		<backup-count>2</backup-count>
