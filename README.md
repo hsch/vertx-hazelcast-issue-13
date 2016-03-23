@@ -6,6 +6,8 @@ Demonstrates how vert.x fails to deliver messages over its event bus when hazelc
 - Windows 7
 - Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
 - Vert.x 3.2.1
+- Hazelcast 3.5.2
+- <backup-count>2</backup-count>
 
 ## Setup
 
