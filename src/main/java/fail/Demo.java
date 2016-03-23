@@ -23,29 +23,31 @@ public class Demo {
       return;
     }
 
+    final VertxOptions options = new VertxOptions();
+
     final String mode = argv[0];
     LOG.info("Starting; mode='{}'", mode);
 
     if (mode.equals("publisher"))
-      publisher();
+      publisher(options);
 
     if (mode.equals("consumer-1"))
-      consumer("consumer-1");
+      consumer(options, "consumer-1");
 
     if (mode.equals("consumer-2"))
-      consumer("consumer-2");
+      consumer(options, "consumer-2");
 
     if (mode.equals("consumer-3"))
-      consumer("consumer-3");
+      consumer(options, "consumer-3");
 
   }
 
   /**
    * Run the one publisher process.
    */
-  public static void publisher() throws Exception {
+  public static void publisher(final VertxOptions vertxOptions) throws Exception {
 
-    Vertx.clusteredVertx(new VertxOptions(), (cluster) -> {
+    Vertx.clusteredVertx(vertxOptions, (cluster) -> {
 
       final Vertx vertx = cluster.result();
       final EventBus eventBus = vertx.eventBus();
@@ -106,9 +108,9 @@ public class Demo {
   /**
    * Run a consumer process with the given name.
    */
-  public static void consumer(final String consumerName) throws Exception {
+  public static void consumer(final VertxOptions vertxOptions, final String consumerName) throws Exception {
 
-    Vertx.clusteredVertx(new VertxOptions(), (cluster) -> {
+    Vertx.clusteredVertx(vertxOptions, (cluster) -> {
 
       final Vertx vertx = cluster.result();
       final EventBus eventBus = vertx.eventBus();
