@@ -89,9 +89,7 @@ Note that it doesn't even help to bring consumers 2 and 3 back into the game. Yo
     Received response; consumerName='consumer-2'
     ...
     
-The cluster map looks okay and correctly recovered:
-
-INFO: [10.55.1.130]:5701 [dev] [3.5.2]
+The cluster map looks okay and correctly recovered when all consumers come back up:
 
     Members [4] {
       Member [10.55.1.130]:5701 this
